@@ -8,14 +8,31 @@ You can create a virtual environment via Anaconda navigator or command line. If 
 
 ## Using Command Line 
 If you would like to create and activate a virtual environment through command line, first check that your conda is up to date using: 
-`conda update conda`
+
+    conda update conda
+
 To create a new conda environment, use:
-`conda create -n yourenvname python=x.x anaconda` where x.x is the Python version you would like to use. 
+
+    conda create -n yourenvname python=x.x anaconda
+
+where x.x is the Python version you would like to use. 
+
 To activate the conda environment, use:
-`source activate yourenvname`
+
+    source activate yourenvname
+
 If you would like to see the list of your environments, you can use:
-`conda info -e`
+    
+    conda info -e
+
 To install more packages to your environment, you can use:
-`conda install -n yourenvname [package]`
+
+    conda install -n yourenvname [package]
+
 Finally, to end a session in the current environment, use:
-`source deactivate`. Finally, if you would like reactivate your environment, simply type: `conda activate yourenvname`
+
+    source deactivate
+
+Finally, if you would like reactivate your environment, simply type: 
+
+    conda activate yourenvname
