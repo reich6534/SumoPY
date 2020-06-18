@@ -8,7 +8,7 @@ config = {
     'author' : 'Hansoo Chang and Reiyuan Chiu',
     'url' : 'https://github.com/Penn-ABSKids/SumoPY',
     'download_url' : 'https://github.com/Penn-ABSKids/SumoPY/archive/master.zip',
-    'author_email' : 'hansooc@sas.upenn.edu',
+    'author_email' : 'hansooc@sas.upenn.edu or chiurei@sas.upenn.edu',
     'version' : '0.1',
     'install_requires' : ['anaconda', 'nose'],
     'packages' : ['SumoPy'],
