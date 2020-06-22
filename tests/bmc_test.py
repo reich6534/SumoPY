@@ -18,3 +18,12 @@ def test_small():
 @raises(IndexError)
 def test_big():
     Book("Revelation", 100)
+
+@raises(ValueError)
+def test_bigbook():
+    Book("Exodus", 151)
+
+@raises(ValueError)
+def test_smallbook():
+    Book("Obadiah", 0)
+

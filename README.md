@@ -36,3 +36,25 @@ Finally, to end a session in the current environment, use:
 Finally, if you would like reactivate your environment, simply type: 
 
     conda activate yourenvname
+
+## Installing Nose
+
+Our program utilizes the Nose package to run tests.
+
+In order to install Nose, first create and activate an Anaconda environment with the pip package.
+
+Next, in the command line write:
+
+    pip install nose
+
+This should install nose onto your machine and allow you to run our tests.
+
+# Running Tests
+
+To run our tests, in the command line first cd to the directory containing SumoPy:
+
+From here, you can run:
+
+    nosetests
+
+and the tests will automatically run.
