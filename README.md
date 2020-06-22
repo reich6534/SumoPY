@@ -45,7 +45,7 @@ In order to install Nose, first create and activate an Anaconda environment with
 
 Next, in the command line write:
 
-    pip intall nose
+    pip install nose
 
 This should install nose onto your machine and allow you to run our tests.
 
