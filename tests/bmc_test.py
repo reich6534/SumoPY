@@ -13,11 +13,14 @@ def test_bookname():
 
 @raises (IndexError)
 def test_small():
-    Book("Genesis", 0)
+    B = Book("Genesis", 50)
+    B.set_chapter_descr(0, "This should fail")
+
 
 @raises(IndexError)
 def test_big():
-    Book("Revelation", 100)
+    B = Book("Revelation", 22)
+    B.set_chapter_descr(23, "This should fail")
 
 @raises(ValueError)
 def test_bigbook():
