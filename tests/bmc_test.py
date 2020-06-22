@@ -10,3 +10,11 @@ def teardown():
 def test_bookname():
     matthew = Book("Matthew", 27)
     assert_equal(matthew.name, "Matthew")
+
+@raises (IndexError)
+def test_small():
+    Book("Genesis", 0)
+
+@raises(IndexError)
+def test_big():
+    Book("Revelation", 100)
