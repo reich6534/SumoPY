@@ -9,18 +9,10 @@ class Book(object):
 
 
     def set_chapter_descr(self, chapter, descr):
-        """Sets the chapter description
 
-        Arguments:
-        chapter -- chapter number
-        descr -- the description for the chapter        
-
-        Raises:
-        IndexError if chapter outside of bounds
-        ValueError if descr is an empty string or None
-        """
-        if (chapter <= 0 or chapter > self.num_chapters):
-            raise IndexError('Invalid chapter number')
+        if (chapter < 1 or chapter > self.num_chapters):
+            raise IndexError('Chapter is outside of bounds')
         if (descr == "" or descr is None):
             raise ValueError("Invalid description")
         self.chapter_descr[chapter - 1] = descr
+
