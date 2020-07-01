@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>File Upload Form</h1>
+
+<form action='/file' method="POST" enctype="multipart/form-data">
+    Upload a File: <input type="file" id = 'Upload' name="file">
+    <br/>
+    Give it a name: <input type="text" id = 'name' name="name">
+    <br/>
+    <input type="submit">
+</form>
+
+{% endblock %}
