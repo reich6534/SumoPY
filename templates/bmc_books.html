@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>
+    Choose your book!
+</h1>
+
+<form action='/bmc_trial'>
+    <select name="book">
+        <option value="Micah">Micah</option>
+    </select>
+    <input type="submit">
+</form>
+
+{% endblock %}

@@ -16,3 +16,5 @@ class Book(object):
             raise ValueError("Invalid description")
         self.chapter_descr[chapter - 1] = descr
 
+    def get_num_chapters(self):
+        return self.num_chapters
