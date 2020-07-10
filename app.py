@@ -54,7 +54,6 @@ def memory():
 def result():
     correct = 0
     for x in range(0, len(library.get(book))):
-        print(x)
         input = request.form[f"{x}"]
         if (input.lower() == library.get(book)[x].lower()):
             correct += 1

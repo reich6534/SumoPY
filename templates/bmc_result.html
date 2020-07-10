@@ -6,7 +6,7 @@
     Results:
 </h1>
 
-{% if result %}
+{% if result >= 0 %}
     You got <em style="color:green; font-size: 2em">{{ result }}</em> correct!
 {% else %}
     uh something went wrong
@@ -14,6 +14,8 @@
 
 <br/>
 
-<button onclick="localhost:5000/bmc_start">Again?</button>
+<form action='/bmc_start'>
+    <button>Again?</button>
+</form>
 
 {% endblock %}
