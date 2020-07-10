@@ -47,17 +47,23 @@ def memory():
     global book
     global library
     library = Library()
-    book = request.args.get("book")
-    return render_template('bmc_form.html', length = len(library.get(book)))
+    try:
+        book = request.args.get("book")
+        return render_template('bmc_form.html', length = len(library.get(book)))
+    except TypeError:
+        return render_template('error.html')
 
 @app.route('/bmc_final', methods = ['POST'])
 def result():
     correct = 0
-    for x in range(0, len(library.get(book))):
-        input = request.form[f"{x}"]
-        if (input.lower() == library.get(book)[x].lower()):
-            correct += 1
-    return render_template('bmc_result.html', result=correct)
+    try:
+        for x in range(0, len(library.get(book))):
+            input = request.form[f"{x}"]
+            if (input.lower() == library.get(book)[x].lower()):
+                correct += 1
+        return render_template('bmc_result.html', result=correct)
+    except TypeError:
+        return render_template('error.html')
 
 if (__name__ == '__main__'):
     app.run()
