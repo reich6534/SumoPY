@@ -53,16 +53,19 @@ def memory():
     except TypeError:
         return render_template('error.html')
 
-@app.route('/bmc_final', methods = ['POST'])
+@app.route('/bmc_final', methods = ['GET', 'POST'])
 def result():
-    correct = 0
-    try:
-        for x in range(0, len(library.get(book))):
-            input = request.form[f"{x}"]
-            if (input.lower() == library.get(book)[x].lower()):
-                correct += 1
-        return render_template('bmc_result.html', result=correct)
-    except TypeError:
+    if (request.method == 'POST'):
+        correct = 0
+        try:
+            for x in range(0, len(library.get(book))):
+                input = request.form[f"{x}"]
+                if (input.lower() == library.get(book)[x].lower()):
+                    correct += 1
+            return render_template('bmc_result.html', result=correct)
+        except TypeError:
+            return render_template('error.html')
+    else:
         return render_template('error.html')
 
 if (__name__ == '__main__'):
