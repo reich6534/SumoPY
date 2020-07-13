@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>
+    Results:
+</h1>
+
+{% if result >= 0 %}
+    You got <em style="color:green; font-size: 2em">{{ result }}</em> correct!
+{% else %}
+    uh something went wrong
+{% endif %}
+
+<br/>
+
+<form action='/bmc_start'>
+    <button>Again?</button>
+</form>
+
+{% endblock %}
