@@ -1,5 +1,6 @@
 from bmc import bmc_app
 from bmc.library import Library
+from bmc.forms import LoginForm
 from werkzeug.utils import secure_filename
 from flask import render_template
 from flask import request, flash, redirect, url_for
@@ -65,3 +66,12 @@ def result():
             return render_template('error.html')
     else:
         return render_template('error.html')
+
+@bmc_app.route('/login', methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if (form.validate_on_submit()):
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data))
+        return redirect(url_for('potato'))
+    return render_template('login.html', form = form)
