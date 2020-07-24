@@ -1,9 +1,12 @@
-from bmc import bmc_app
+from bmc import bmc_app, db
+from bmc.forms import LoginForm, RegistrationForm
 from bmc.library import Library
-from bmc.forms import LoginForm
-from werkzeug.utils import secure_filename
-from flask import render_template
+from bmc.models import User
+from flask import render_template, request
 from flask import request, flash, redirect, url_for
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -24,6 +27,7 @@ def good_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bmc_app.route('/file', methods = ['POST', 'GET'])
+@login_required
 def potato():
     if (request.method == 'POST'):
         file = request.files['file']
@@ -69,9 +73,42 @@ def result():
 
 @bmc_app.route('/login', methods = ['GET', 'POST'])
 def login():
+    if (current_user.is_authenticated):
+        return redirect(url_for('potato'))
     form = LoginForm()
     if (form.validate_on_submit()):
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data))
-        return redirect(url_for('potato'))
+        user = User.query.filter_by(username=form.username.data).first()
+        if (user is None or not user.check_password(form.password.data)):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.get.args('next')
+        if (not next_page or url_parse(next_page).netloc != ''):
+            next_page = url_for('potato')
+        return redirect(next_page)
     return render_template('login.html', form = form)
+
+@bmc_app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('potato'))
+
+
+@bmc_app.route('/')
+@login_required
+def hello():
+    return render_template("hello_user.html")
+
+@bmc_app.route('/register', methods = ['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('potato'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash("Congratulations, you have been registered!")
+        return redirect(url_for('login'))
+    return render_template('registration.html', form=form)
