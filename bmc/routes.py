@@ -93,12 +93,6 @@ def logout():
     logout_user()
     return redirect(url_for('potato'))
 
-
-@bmc_app.route('/')
-@login_required
-def hello():
-    return render_template("hello_user.html")
-
 @bmc_app.route('/register', methods = ['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
