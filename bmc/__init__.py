@@ -11,4 +11,4 @@ migrate = Migrate(bmc_app, db)
 login = LoginManager(bmc_app)
 login.login_view = 'login'
 
-from bmc import routes, models
+from bmc import routes, models, errors
