@@ -1,0 +1,77 @@
+2020-08-06 11:55:45,617 ERROR: Exception on /register [POST] [in C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py:1891
+Traceback (most recent call last):
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\routes.py", line 101, in register
+    if form.validate_on_submit():
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask_wtf\form.py", line 100, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\wtforms\form.py", line 318, in validate
+    return super(Form, self).validate(extra)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\wtforms\form.py", line 150, in validate
+    if not field.validate(self, extra):
+  File "C:\Users\chiur\anaconda3\lib\site-packages\wtforms\fields\core.py", line 226, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\wtforms\fields\core.py", line 246, in _run_validation_chain
+    validator(form, self)
+  File "C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\forms.py", line 20, in validate_username
+    user = User.query.filter_by(username=username.data).first()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 3065, in __getitem__
+    return list(res)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 3414, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1101, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1250, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\chiur\anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('chiurei', 1, 0)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-08-06 12:02:04,133 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:09,365 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:20,137 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:26,406 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:39,431 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:48,854 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-06 12:02:53,670 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47

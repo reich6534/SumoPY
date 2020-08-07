@@ -1,0 +1,26 @@
+2020-08-06 15:05:24,530 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-07 12:11:26,877 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-07 12:12:02,958 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-07 12:12:05,159 ERROR: Exception on /login [GET] [in C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py:1891
+Traceback (most recent call last):
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 2097, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-07 12:13:03,218 INFO: Website startup [in C:\Users\chiur\Documents\Other\Summer 2020 Python Stuff\SumoPY\bmc\__init__.py:47
+2020-08-07 12:13:10,893 ERROR: Exception on /login [GET] [in C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py:1891
+Traceback (most recent call last):
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "C:\Users\chiur\anaconda3\lib\site-packages\flask\app.py", line 2097, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
