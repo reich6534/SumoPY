@@ -1,7 +1,7 @@
 from bmc.models import User
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -25,3 +25,4 @@ class RegistrationForm(FlaskForm):
         email = User.query.filter_by(email=email.data).first()
         if (email is not None):
             raise ValidationError('Email is already in use')
+        
