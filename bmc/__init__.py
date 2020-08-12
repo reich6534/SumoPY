@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
@@ -13,6 +14,7 @@ db = SQLAlchemy(bmc_app)
 migrate = Migrate(bmc_app, db)
 login = LoginManager(bmc_app)
 login.login_view = 'login'
+bootstrap = Bootstrap(bmc_app)
 
 from bmc import routes, models, errors
 
