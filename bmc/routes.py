@@ -42,6 +42,7 @@ def potato():
         return render_template("file_upload.html")
 
 @bmc_app.route('/bmc_start')
+@login_required
 def enter():
     return render_template("bmc_books.html")
 
@@ -84,19 +85,19 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if (not next_page or url_parse(next_page).netloc != ''):
-            next_page = url_for('potato')
+            next_page = url_for('enter')
         return redirect(next_page)
     return render_template('login.html', form = form)
 
 @bmc_app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('potato'))
+    return redirect(url_for('login'))
 
 @bmc_app.route('/register', methods = ['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('potato'))
+        return redirect(url_for('enter'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
