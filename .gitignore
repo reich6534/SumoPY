@@ -6,4 +6,3 @@ __pycache__/*
 .idea
 bmc/app.db
 logs/*
-migrations/*
