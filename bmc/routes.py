@@ -1,7 +1,7 @@
 from bmc import bmc_app, db
 from bmc.forms import LoginForm, RegistrationForm
 from bmc.library import Library
-from bmc.models import User
+from bmc.models import User, Practice
 from flask import render_template, request
 from flask import request, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
@@ -50,7 +50,9 @@ def enter():
 def memory():
     global book
     global library
+    global format
     library = Library()
+    format = "text"
     try:
         book = request.args.get("book")
         return render_template('bmc_form.html', length = len(library.get(book)))
@@ -60,22 +62,33 @@ def memory():
 @bmc_app.route('/bmc_final', methods = ['GET', 'POST'])
 def result():
     if (request.method == 'POST'):
+        user = User.query.filter_by(username=current_user.username).first_or_404()
         correct = 0
         try:
-            for x in range(0, len(library.get(book))):
-                input = request.form[f"{x}"]
-                if (input.lower() == library.get(book)[x].lower()):
-                    correct += 1
+            if (format == "text"):
+                for x in range(0, len(library.get(book))):
+                    input = request.form[f"{x}"]
+                    if (input.lower() == library.get(book)[x].lower()):
+                        correct += 1
+            p = Practice(book=book, correct=correct, medium=format, user=user)
+            db.session.add(p)
+            db.session.commit()
             return render_template('bmc_result.html', result=correct)
         except TypeError:
             return render_template('error.html')
     else:
         return render_template('error.html')
 
+@bmc_app.route('/bmc_history/<username>')
+def history(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    practices = user.practices
+    return render_template('bmc_history.html', user = user, practices = practices)
+
 @bmc_app.route('/login', methods = ['GET', 'POST'])
 def login():
     if (current_user.is_authenticated):
-        return redirect(url_for('potato'))
+        return redirect(url_for('enter'))
     form = LoginForm()
     if (form.validate_on_submit()):
         user = User.query.filter_by(username=form.username.data).first()

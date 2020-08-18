@@ -14,7 +14,13 @@
 
 <br/>
 
-<form action='/bmc_start'>
+<form action="{{ url_for('history', username=current_user.username) }}">
+    <button>Previous tries</button>
+</form>
+
+<br/>
+
+<form action="{{ url_for('enter') }}">
     <button>Again?</button>
 </form>
 

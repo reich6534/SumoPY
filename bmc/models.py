@@ -30,6 +30,7 @@ class Practice(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     correct = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    medium = db.Column(db.String(5))
 
     def __repr__(self):
-        return '<Book {}, {} correct>'.format(self.book, self.correct)
+        return '<Book {}, {} correct, {} format>'.format(self.book, self.correct, self.medium)

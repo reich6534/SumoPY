@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block app_content %}
+
+<h1>
+    Previous tries for {{ user.username }}:
+</h1>
+<hr>
+{% for practice in practices %}
+<p>{{ practice.timestamp }}: {{ practice.correct }} correct in Book {{ practice.Book }} using {{ practice.medium }}</p>
+{% endfor %}
+
+<br/>
+
+<form action="{{ url_for('enter') }}">
+    <button>Again?</button>
+</form>
+
+{% endblock %}
