@@ -20,9 +20,6 @@ var doneButton = document.getElementById("doneButton");
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
-doneButton.onclick = function () {
-	location.href = "/bmc_start";
-}
 
 
 function startRecording() {
@@ -164,8 +161,7 @@ function createDownloadLink(blob) {
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
 		          console.log("Server returned: ",e.target.responseText);
-			  }
-			  doneButton.disabled = false; // doesn't work yet
+				}
 		  };
 		  var fd=new FormData();
 		  fd.append("audio_data",blob, filename);

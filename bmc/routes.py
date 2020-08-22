@@ -51,7 +51,7 @@ def enter():
 def save_voice():
     file = request.files['audio_data']
     file.save(file.filename + ".wav")
-    return render_template("uploaded.html") #doesn't work yet
+    return "success" # "Done" button in page will move to new page
 
 @bmc_app.route('/bmc_trial')
 def memory():
