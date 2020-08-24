@@ -6,9 +6,17 @@
     Previous tries for {{ user.username }}:
 </h1>
 <hr>
+{% if practices %}
+
 {% for practice in practices %}
+
 <p>{{ practice.timestamp }}: {{ practice.correct }} correct in Book {{ practice.Book }} using {{ practice.medium }}</p>
+
 {% endfor %}
+
+{% else %}
+
+<p>you weren't supposed to get here this way</p>
 
 <br/>
 

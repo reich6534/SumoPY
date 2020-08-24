@@ -50,14 +50,17 @@ def enter():
 def memory():
     global book
     global library
-    global format
     library = Library()
-    format = "text"
-    try:
-        book = request.args.get("book")
-        return render_template('bmc_form.html', length = len(library.get(book)))
-    except TypeError:
-        return render_template('error.html')
+    global format
+    format = request.args.get("format")
+    if (format == "text"):
+        try:
+            book = request.args.get("book")
+            return render_template('bmc_form.html', length = len(library.get(book)))
+        except TypeError:
+            return render_template('error.html')
+    else:
+        return render_template('bmc_voice.html')
 
 @bmc_app.route('/bmc_final', methods = ['GET', 'POST'])
 def result():
