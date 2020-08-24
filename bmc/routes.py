@@ -8,7 +8,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'wav'}
 
 @bmc_app.route('/hello', methods = ['POST', 'GET'])
 def index():
@@ -45,6 +45,13 @@ def potato():
 @login_required
 def enter():
     return render_template("bmc_books.html")
+
+@bmc_app.route('/voice', methods = ['POST'])
+@login_required
+def save_voice():
+    file = request.files['audio_data']
+    file.save(file.filename + ".wav")
+    return "success" # "Done" button in page will move to new page
 
 @bmc_app.route('/bmc_trial')
 def memory():
