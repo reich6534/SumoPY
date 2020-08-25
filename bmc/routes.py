@@ -59,15 +59,17 @@ def memory():
     global library
     library = Library()
     global format
+    book = request.args.get("book")
     format = request.args.get("format")
     if (format == "text"):
         try:
-            book = request.args.get("book")
             return render_template('bmc_form.html', length = len(library.get(book)))
         except TypeError:
             return render_template('error.html')
-    else:
+    elif (format == "voice"):
         return render_template('bmc_voice.html')
+    else:
+        return render_template('error.html')
 
 @bmc_app.route('/bmc_final', methods = ['GET', 'POST'])
 def result():
@@ -80,6 +82,10 @@ def result():
                     input = request.form[f"{x}"]
                     if (input.lower() == library.get(book)[x].lower()):
                         correct += 1
+            elif (format == "voice"):
+                file = request.files['audio_data']
+                file.save(file.filename + ".wav")
+                correct = 6
             p = Practice(book=book, correct=correct, medium=format, user=user)
             db.session.add(p)
             db.session.commit()

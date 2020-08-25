@@ -160,12 +160,12 @@ function createDownloadLink(blob) {
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
-		          console.log("Server returned: ",e.target.responseText);
+		          console.log("Server returned: ", e.target.responseText);
 				}
 		  };
 		  var fd=new FormData();
-		  fd.append("audio_data",blob, filename);
-		  xhr.open("POST","/voice",true);
+		  fd.append("audio_data", blob, filename);
+		  xhr.open("POST", "/voice", true);
 		  xhr.send(fd);
 	})
 	li.appendChild(document.createTextNode (" "))//add a space in between
