@@ -131,8 +131,8 @@ function createDownloadLink(blob) {
 	var li = document.createElement('li');
 	var link = document.createElement('a');
 
-	//name of .wav file to use during upload and download (without extendion)
-	var filename = new Date().toISOString();
+	//name of .wav file to use during upload and download (without extension)
+	var filename = "recording";
 
 	//add controls to the <audio> element
 	au.controls = true;
@@ -140,7 +140,7 @@ function createDownloadLink(blob) {
 
 	//save to disk link
 	link.href = url;
-	link.download = filename+".wav"; //download forces the browser to donwload the file using the  filename
+	link.download = filename+".wav"; //download forces the browser to download the file using the filename
 	link.innerHTML = "Save to disk";
 
 	//add the new audio element to li
@@ -157,6 +157,7 @@ function createDownloadLink(blob) {
 	upload.href="#";
 	upload.innerHTML = "Upload";
 	upload.addEventListener("click", function(event){
+		console.log("uploading...");
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
