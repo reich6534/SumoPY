@@ -165,6 +165,7 @@ function createDownloadLink(blob) {
 				}
 		  };
 		  var fd=new FormData();
+		  console.log("Click on upload: filename=" + filename);
 		  fd.append("audio_data", blob, filename);
 		  xhr.open("POST", "/voice", true);
 		  xhr.send(fd);
