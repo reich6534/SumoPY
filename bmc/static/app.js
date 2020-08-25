@@ -14,7 +14,6 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
-var doneButton = document.getElementById("doneButton");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -39,7 +38,6 @@ function startRecording() {
 	recordButton.disabled = true;
 	stopButton.disabled = false;
 	pauseButton.disabled = false;
-	doneButton.disabled = true;
 	/*
     	We're using the standard promise based getUserMedia() 
     	https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
@@ -109,7 +107,6 @@ function stopRecording() {
 	stopButton.disabled = true;
 	recordButton.disabled = false;
 	pauseButton.disabled = true;
-	doneButton.disabled = false;
 
 	//reset button just in case the recording is stopped while paused
 	pauseButton.innerHTML="Pause";
@@ -157,7 +154,6 @@ function createDownloadLink(blob) {
 	upload.href="#";
 	upload.innerHTML = "Upload";
 	upload.addEventListener("click", function(event){
-		console.log("uploading...");
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {

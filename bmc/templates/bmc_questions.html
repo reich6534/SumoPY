@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block app_content %}
+
+<h1>
+    Write the title of each chapter!
+</h1>
+
+<form action="{{ url_for('record') }}">
+    {% if length %}
+        {% for int in range(length) %}
+            <button name="chapter" value={{int}}>Chapter {{int + 1}}</button>
+            <br/>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<br></br>
+
+<form action="{{ url_for('result', format='voice') }}" method="POST"></form>
+    <input type="submit">
+</form>
+
+{% endblock %}
