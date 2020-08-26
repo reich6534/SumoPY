@@ -83,9 +83,15 @@ def memory():
         except TypeError:
             return render_template('error.html')
     elif (format == "voice"):
-        return render_template('bmc_voice.html')
+        return render_template('bmc_questions.html', length = len(library.get(book)))
     else:
         return render_template('error.html')
+
+@bmc_app.route('/bmc_record')
+def record():
+    global chapter_num
+    chapter_num = request.args.get("chapter")
+    return render_template('bmc_voice.html')
 
 @bmc_app.route('/bmc_final', methods = ['GET', 'POST'])
 def result():
@@ -99,8 +105,6 @@ def result():
                     if (input.lower() == library.get(book)[x].lower()):
                         correct += 1
             elif (format == "voice"):
-                file = request.files['audio_data']
-                file.save(file.filename + ".wav")
                 correct = 6
             p = Practice(book=book, correct=correct, medium=format, user=user)
             db.session.add(p)

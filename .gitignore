@@ -1,4 +1,3 @@
-*.wav
 __pycache__/*
 *.pyc
 .idea/*
@@ -9,3 +8,4 @@ bmc/app.db
 logs/*
 migrations/*
 private
+recordings/*
