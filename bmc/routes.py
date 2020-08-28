@@ -7,6 +7,7 @@ from flask import request, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
+from google.cloud import speech_v1p1beta1
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'wav'}
 
@@ -49,9 +50,25 @@ def enter():
 @bmc_app.route('/voice', methods = ['POST'])
 @login_required
 def save_voice():
-    file = request.files['audio_data']
-    file.save("bmc/recordings/" + book + "_" + chapter_num + ".wav")
-    return "success" # "Done" button in page will move to new page
+    file_bytes = request.files['audio_data'].read()
+
+    audio = { 'content': file_bytes}
+    config = {
+        "language_code": "en-US",
+        "sample_rate_hertz": 48000,
+    }
+    speech_response = bmc_app.speech_client.recognize(config, audio)
+    first_result = None
+    for result in speech_response.results:
+        alternative = result.alternatives[0]
+
+        if (first_result is None):
+            first_result = "Transcript: {}".format(alternative.transcript)
+        print(u"Transcript: {}".format(alternative.transcript))
+    # Below is to save file onto computer
+    # file.save("bmc/recordings/" + book + "_" + chapter_num + ".wav")
+
+    return first_result
 
 @bmc_app.route('/bmc_trial')
 def memory():

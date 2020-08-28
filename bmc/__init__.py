@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+from google.cloud import speech_v1p1beta1
 
 bmc_app = Flask(__name__)
 bmc_app.config.from_object(Config)
@@ -15,6 +16,7 @@ migrate = Migrate(bmc_app, db)
 login = LoginManager(bmc_app)
 login.login_view = 'login'
 bootstrap = Bootstrap(bmc_app)
+bmc_app.speech_client = speech_v1p1beta1.SpeechClient.from_service_account_json("./private/sumopy.json")
 
 from bmc import routes, models, errors
 
