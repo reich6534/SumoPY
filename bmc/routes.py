@@ -61,14 +61,14 @@ def memory():
     global format
     book = request.args.get("book")
     format = request.args.get("format")
-    if (format == "text"):
-        try:
-            return render_template('bmc_form.html', length = len(library.get(book)))
-        except TypeError:
+    try:
+        if (format == "text"):
+                return render_template('bmc_form.html', length = len(library.get(book)))
+        elif (format == "voice"):
+            return render_template('bmc_questions.html', length = len(library.get(book)))
+        else:
             return render_template('error.html')
-    elif (format == "voice"):
-        return render_template('bmc_questions.html', length = len(library.get(book)))
-    else:
+    except TypeError:
         return render_template('error.html')
 
 @bmc_app.route('/bmc_record')
